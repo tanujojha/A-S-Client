@@ -1,7 +1,9 @@
+import { public_folder_local } from "../../general";
 import "./online.css";
 
 export default function Online({user}) {
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const PF = public_folder_local;
 
   return (
     <li className="rightbarFriend">

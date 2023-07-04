@@ -2,7 +2,8 @@ import Animation from "../../components/animation/animation"
 import Prenavbar from '../../components/prenavbar/prenavbar';
 import axios from "axios";
 import { useRef } from "react";
-import {Link, useHistory} from "react-router-dom"
+import {Link, useHistory} from "react-router-dom";
+import { server_url_local } from "../../general";
 
 
 
@@ -25,9 +26,10 @@ export default function Register() {
         email: email.current.value,
         password: password.current.value,
       };
-      console.log("user created");
+      // console.log("user created");
       try {
-        await axios.post("/auth/register", user);
+        const res = await axios.post(`${server_url_local}/api/auth/register`, user);
+        console.log(res);
         console.log("posting to reg");
         history.push("/login");
       } catch (err) {
@@ -77,7 +79,7 @@ export default function Register() {
                   <a class="fpa" href="/forgotpassword">Forgot Password?</a>
               </div>
 
-              <a href="login"><p class="caa mt-5 mb-3 ">Log In</p></a>
+              <Link to="login"><p class="caa mt-5 mb-3 ">Log In</p></Link>
 
           </main>
 

@@ -11,7 +11,7 @@ export default function Prenavbar (){
   <div className="row justify-content-around">
 
     <div className="col-auto ">
-      <a href="index.html" className="navbar-brand"><img src="assets/pics/artsocial-logo.PNG" alt="ArHub logo" className="logo-img"/></a>
+      <Link to="/" className="navbar-brand"><img src="assets/pics/artsocial-logo.PNG" alt="ArHub logo" className="logo-img"/></Link>
     </div>
 
     <div className="$col col-md-auto ">
@@ -22,13 +22,13 @@ export default function Prenavbar (){
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="ulstyle navbar-nav me-auto mb-2 mb-lg-0">
           <li className="nav-item">
-            <a className={`nav-link ${location.pathname==="/"? "active": ""}`} aria-current="page" href="/">Home</a>
+            <Link className={`nav-link ${location.pathname==="/"? "active": ""}`} aria-current="page" to="/">Home</Link>
           </li>
           <li className="nav-item">
-            <a className={`nav-link ${location.pathname==="/about"? "active": ""}`} href="about">About</a>
+            <Link className={`nav-link ${location.pathname==="/about"? "active": ""}`} to="about">About</Link>
           </li>
           <li className="nav-item">
-            <a className={`nav-link ${location.pathname==="/login"? "active": ""}`} href="/login">Sign-In</a>
+            <Link className={`nav-link ${location.pathname==="/login"? "active": ""}`} to="/login">Sign-In</Link>
           </li>
           </ul>
 

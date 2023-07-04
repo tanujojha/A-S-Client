@@ -3,7 +3,7 @@ import { useContext, useRef } from "react";
 import Prenavbar from '../../components/prenavbar/prenavbar';
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
-
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 
 export default function Login() {
@@ -49,10 +49,10 @@ export default function Login() {
             </form>
 
               <div class="mt-3 mb-3">
-                  <a class="fpa" href="/forgotpassword">Forgot Password?</a>
+                  <Link class="fpa" to="/forgotpassword">Forgot Password?</Link>
               </div>
 
-              <a href="register"><p class="caa mt-5 mb-3 ">Create Account</p></a>
+              <Link to="register"><p class="caa mt-5 mb-3 ">Create Account</p></Link>
 
           </main>
 
