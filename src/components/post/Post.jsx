@@ -5,14 +5,14 @@ import axios from "axios";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { public_folder_local, server_url_local } from "../../general";
+import { genConfig } from "../../general";
 
 export default function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
   // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const PF = public_folder_local;
+  const PF = genConfig.url.public_folder;
   const { user: currentUser } = useContext(AuthContext);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function Post({ post }) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`${server_url_local}/api/users?userId=${post.userId}`);
+      const res = await axios.get(`${genConfig.url.server_url}/api/users?userId=${post.userId}`);
       setUser(res.data);
     };
     fetchUser();
@@ -29,7 +29,7 @@ export default function Post({ post }) {
 
   const likeHandler = () => {
     try {
-      axios.put(`${server_url_local}/api/posts/${post._id}/like`, { userId: currentUser._id });
+      axios.put(`${genConfig.url.server_url}/api/posts/${post._id}/like`, { userId: currentUser._id });
     } catch (err) {}
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);

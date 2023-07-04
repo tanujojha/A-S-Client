@@ -3,7 +3,7 @@ import Prenavbar from '../../components/prenavbar/prenavbar';
 import axios from "axios";
 import { useRef } from "react";
 import {Link, useHistory} from "react-router-dom";
-import { server_url_local } from "../../general";
+import { genConfig } from "../../general";
 
 
 
@@ -28,7 +28,7 @@ export default function Register() {
       };
       // console.log("user created");
       try {
-        const res = await axios.post(`${server_url_local}/api/auth/register`, user);
+        const res = await axios.post(`${genConfig.url.server_url}/api/auth/register`, user);
         console.log(res);
         console.log("posting to reg");
         history.push("/login");

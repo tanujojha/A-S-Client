@@ -1,9 +1,9 @@
 import "./closeFriend.css";
-import {public_folder_local} from "../../general"
+import {genConfig} from "../../general"
 
 export default function CloseFriend({user}) {
   // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const PF = public_folder_local;
+  const PF = genConfig.url.public_folder;
   return (
     <li className="sidebarFriend">
       <img className="sidebarFriendImg" src={PF+user.profilePicture} alt="" />

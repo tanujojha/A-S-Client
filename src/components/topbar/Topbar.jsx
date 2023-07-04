@@ -8,7 +8,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { logoutCall } from "../../apiCalls";
 import axios from "axios";
 import { useParams } from "react-router";
-import { public_folder_local, server_url_local } from "../../general";
+import { genConfig } from "../../general";
 // import SearchUser from "../searchuser/Profile"
 
 
@@ -37,7 +37,7 @@ export default function Topbar() {
     console.log("hello")
     const fetchUser = async () => {
       console.log("running")
-      const res = await axios.get(`${server_url_local}/api/users?username=${usertobefound}`);
+      const res = await axios.get(`${genConfig.url.server_url}/api/users?username=${usertobefound}`);
       setFoundUser(res.data);
     };
     // fetchUser();
@@ -63,7 +63,7 @@ export default function Topbar() {
   }
 
   // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const PF = public_folder_local;
+  const PF = genConfig.url.public_folder;
 
   return (
     <div className="topbarContainer navbar-dark bg-dark">

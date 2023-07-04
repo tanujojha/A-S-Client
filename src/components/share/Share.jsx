@@ -9,12 +9,12 @@ import {
 import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
-import { public_folder_local, server_url_local } from "../../general";
+import { genConfig } from "../../general";
 
 export default function Share() {
   const { user } = useContext(AuthContext);
   // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const PF = public_folder_local
+  const PF = genConfig.url.public_folder;
   const desc = useRef();
   const [file, setFile] = useState(null);
 
@@ -32,11 +32,11 @@ export default function Share() {
       newPost.img = fileName;
       console.log(newPost);
       try {
-        await axios.post(`${server_url_local}/api/upload`, data);
+        await axios.post(`${genConfig.url.server_url}/api/upload`, data);
       } catch (err) {}
     }
     try {
-      await axios.post(`${server_url_local}/api/posts`, newPost);
+      await axios.post(`${genConfig.url.server_url}/api/posts`, newPost);
       window.location.reload();
     } catch (err) {}
   };
