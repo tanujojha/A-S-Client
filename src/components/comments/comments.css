@@ -1,0 +1,43 @@
+.cmntinddiv{
+    display: flex;
+    gap: 15px;
+    padding: 5px 0px;
+}
+
+.cmntprofilediv{
+
+}
+
+.cmntprofileimg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
+
+.cmntrightdiv{
+    width: 100%;
+}
+
+.cmntrighttopdiv{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cmntrighttoprightdiv{
+    display: flex;
+    gap: 10px;
+}
+
+.cmnttime{
+
+}
+
+.cmntmaindiv{
+
+}
+
+.cmntdisc{
+
+}
