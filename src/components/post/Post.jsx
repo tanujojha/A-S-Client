@@ -12,10 +12,11 @@ export default function Post({ post }) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
-  const [updatedPost, setUpdatedPost] = useState(post)
+  // const [updatedPost, setUpdatedPost] = useState(post);    // contains initially post(prop.post) and updated post after adding comment
   const [clickedComments, setClickedComments] = useState(false);  // check if user clicked comments button
   const [comment, setComment] = useState(""); // store a comment
-  const [commentAdded, setCommentAdded] = useState(false);  // check for comment added or not, this also is the trigger for fetching all the comments including the recent comment
+  const [allComments, setAllComments] = useState([]);   // stores all the comments of the post
+
   // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const PF = genConfig.url.public_folder;
   const { user: currentUser } = useContext(AuthContext);
@@ -32,21 +33,28 @@ export default function Post({ post }) {
     fetchUser();
   }, [post.userId]);
 
+
   useEffect(()=>{
-    const fetchAllComments = async ()=>{
+    const getAllComments = async()=>{
       try {
-        const res = await axios.get(`${genConfig.url.server_url}/api/posts/${post._id}/getcomments`);
-        console.log(res);
+
+        const res = await axios.get(`${genConfig.url.server_url}/api/posts/${post._id}/getallcomments`);
+        // console.log(res.data.comments);
+        if(res.status === 200){
+          setAllComments(res.data.comments)
+        }
         
       } catch (err) {
         console.log(err);
       }
     };
 
-    fetchAllComments();
+    clickedComments && getAllComments();  // call only when user clickes on comment button ie. commentClicked === true
 
-  }, [clickedComments, commentAdded])
 
+  }, [clickedComments])
+
+  
   // Like Handler
   const likeHandler = () => {
     try {
@@ -59,15 +67,13 @@ export default function Post({ post }) {
   // Comments Handler
   const commentHandler = async ()=>{
     setComment("");
-    setCommentAdded(true)
     try {
       const res = await axios.put(`${genConfig.url.server_url}/api/posts/${post._id}/addcomment`, {userId: currentUser._id, userName: currentUser.username, comment: comment});
-      console.log(res);
+      // console.log(res.data.comments);
       if(res.status === 200){
-        setUpdatedPost(res.data.post)
+        setAllComments(res.data.comments)
       }
     } catch (err) {
-      setCommentAdded(false)
       console.log(err);
     }
   }
@@ -114,11 +120,12 @@ export default function Post({ post }) {
               src={`${PF}heart.png`}
               onClick={likeHandler}
               alt=""
+              style={{background: isLiked ? "red" : null}}
             />
             <span className="postLikeCounter">{like} people like it</span>
           </div>
           <div className="postBottomRight">
-            <span onClick={()=> setClickedComments(true)} className="postCommentText">{post.comment} comments</span>
+            <span onClick={()=> setClickedComments(!clickedComments)} className="postCommentText">{post.comment} comments</span>
           </div>
         </div>
         <div className="cmntSection">
@@ -133,7 +140,7 @@ export default function Post({ post }) {
                   </div>
                   <div className="cmntlistdiv">
                     {
-                      updatedPost.comments.map((comment)=> <Comments key={comment._id} user={user} comment={comment} />)
+                      allComments.map((comment)=> <Comments key={comment._id} comment={comment} />)
                     }
                   </div>
                 </>
