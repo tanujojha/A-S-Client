@@ -27,32 +27,32 @@ export default function Login() {
 
     <div className = "row">
     <Animation/>
-    <div class=" content col-md-6">
+    <div className=" content col-md-6">
 
 
-          <main class="form-signin">
-            <form class="" action="/signup" method="post">
-              <h1 class="h3 mb-3 fw-bold">Please sign in</h1>
+          <main className="form-signin">
+            <form className="" action="/signup" method="post">
+              <h1 className="h3 mb-3 fw-bold">Please sign in</h1>
 
-              <div class="form-floating">
-                <input ref = {email} name="email" type="email" class="form-control" id="floatingInput" required autocomplete="off"/>
+              <div className="form-floating">
+                <input ref = {email} name="email" type="email" className="form-control" id="floatingInput" required autocomplete="off"/>
                 <label for="floatingInput">Email address</label>
               </div>
 
-              <div class="form-floating">
-                <input ref = {password} name="password" type="password" class="form-control" id="floatingPassword" minlength="0" required autocomplete="off" />
-                <button class="showbtn" type="button" name="button">show</button>
+              <div className="form-floating">
+                <input ref = {password} name="password" type="password" className="form-control" id="floatingPassword" minlength="0" required autocomplete="off" />
+                <button className="showbtn" type="button" name="button">show</button>
                 <label for="floatingPassword">Password</label>
               </div>
-              <button onClick = {handleClick} value = "signinbtn" name="signinbtn" class="w-10 btn btn-lg bg-info mt-4" type="submit">Sign in</button>
+              <button onClick = {handleClick} value = "signinbtn" name="signinbtn" className="w-10 btn btn-lg bg-info mt-4" type="submit">Sign in</button>
 
             </form>
 
-              <div class="mt-3 mb-3">
-                  <Link class="fpa" to="/forgotpassword">Forgot Password?</Link>
+              <div className="mt-3 mb-3">
+                  <Link className="fpa" to="/forgotpassword">Forgot Password?</Link>
               </div>
 
-              <Link to="register"><p class="caa mt-5 mb-3 ">Create Account</p></Link>
+              <Link to="register"><p className="caa mt-5 mb-3 ">Create Account</p></Link>
 
           </main>
 

@@ -52,7 +52,7 @@ export default function Post({ post }) {
     clickedComments && getAllComments();  // call only when user clickes on comment button ie. commentClicked === true
 
 
-  }, [clickedComments])
+  }, [clickedComments, post._id])
 
   
   // Like Handler

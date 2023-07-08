@@ -21,7 +21,7 @@ export default function Topbar() {
   const { user, dispatch } = useContext(AuthContext);
 
   const [foundUser, setFoundUser] = useState({});
-  const username = useParams().username;
+  // const username = useParams().username;
   const [usertobefound, setusertobefound] = useState("")
 
 
@@ -34,7 +34,6 @@ export default function Topbar() {
 
 
   useEffect(() => {
-    console.log("hello")
     const fetchUser = async () => {
       console.log("running")
       const res = await axios.get(`${genConfig.url.server_url}/api/users?username=${usertobefound}`);
@@ -42,7 +41,7 @@ export default function Topbar() {
     };
     // fetchUser();
     // <SearchUser user = {foundUser}/>
-    console.log(foundUser)
+    // console.log(foundUser)
   }, [usertobefound]);
 
 

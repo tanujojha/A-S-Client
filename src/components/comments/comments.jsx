@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import "./comments.css";
 import { MoreVert } from "@material-ui/icons";
 import { Link } from "react-router-dom";
