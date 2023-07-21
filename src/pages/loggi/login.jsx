@@ -4,6 +4,7 @@ import Prenavbar from '../../components/prenavbar/prenavbar';
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 export default function Login() {
@@ -24,7 +25,7 @@ export default function Login() {
   return (
     <>
     <Prenavbar/>
-
+    
     <div className = "row">
     <Animation/>
     <div className=" content col-md-6">
@@ -44,7 +45,7 @@ export default function Login() {
                 <button className="showbtn" type="button" name="button">show</button>
                 <label for="floatingPassword">Password</label>
               </div>
-              <button onClick = {handleClick} value = "signinbtn" name="signinbtn" className="w-10 btn btn-lg bg-info mt-4" type="submit">Sign in</button>
+              <button onClick = {handleClick} value = "signinbtn" name="signinbtn" className="w-10 btn btn-lg bg-info mt-4" type="submit">{isFetching ? <CircularProgress /> : "Sign in"}</button>
 
             </form>
 

@@ -1,0 +1,29 @@
+/* POST MORE SECITON */
+.postmoremaindiv{
+    width: min(30%, 500px);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* margin: 50vh -50vw; */
+    /* transform: translateY(-50%);
+    transform: translateX(-50%); */
+    background: rgb(22, 28, 28);
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.postmoreul{
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    color: whitesmoke;
+    margin-bottom: 0;
+}
+
+.postmoreul > li{
+    border-bottom: 0.01rem dotted gray;
+    padding: 10px;
+    cursor: pointer;
+    font-size: large;
+}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { genConfig } from "./general";
+import { genConfig } from "./general"; 
 
 export const loginCall = async (userCredential, dispatch) => {
   dispatch({ type: "LOGIN_START" });

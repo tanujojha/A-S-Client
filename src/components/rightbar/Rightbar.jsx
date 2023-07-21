@@ -13,11 +13,10 @@ export default function Rightbar({ user }) {
   const PF = genConfig.url.public_folder;
   const [friends, setFriends] = useState([]);
   const { user: currentUser, dispatch } = useContext(AuthContext);
-  const [followed, setFollowed] = useState(
-    currentUser.followings.includes(user?.id)
-  );
+  const [followed, setFollowed] = useState(currentUser.followings.includes(user?.id));
 
   useEffect(() => {
+
     const getFriends = async () => {
       try {
         const friendList = await axios.get(`${genConfig.url.server_url}/api/users/friends/${user._id}`);
@@ -117,6 +116,8 @@ export default function Rightbar({ user }) {
       </>
     );
   };
+
+  
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">

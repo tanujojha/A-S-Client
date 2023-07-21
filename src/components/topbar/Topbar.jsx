@@ -2,29 +2,25 @@ import "./topbar.css";
 import { Search, Person, Chat, Notifications, } from "@material-ui/icons";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
-import { Link, useHistory  } from "react-router-dom";
-import { useContext, useEffect, useRef, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { logoutCall } from "../../apiCalls";
 import axios from "axios";
-import { useParams } from "react-router";
 import { genConfig } from "../../general";
-// import SearchUser from "../searchuser/Profile"
+// import SearchUser from "../searchuser/Profile";
 
 
 export default function Topbar() {
 
   const history = useHistory();
-
   const search = useRef();
 
   const { user, dispatch } = useContext(AuthContext);
 
-  const [foundUser, setFoundUser] = useState({});
-  // const username = useParams().username;
-  const [usertobefound, setusertobefound] = useState("")
+  const [foundUser, setFoundUser] = useState({});   // holds searched user data from DB
 
-
+  // Handel Logout
   function handelLogout(){
       localStorage.removeItem("user");
       logoutCall(dispatch)
@@ -32,33 +28,47 @@ export default function Topbar() {
       // console.log(user);
   };
 
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      console.log("running")
-      const res = await axios.get(`${genConfig.url.server_url}/api/users?username=${usertobefound}`);
-      setFoundUser(res.data);
-    };
-    // fetchUser();
-    // <SearchUser user = {foundUser}/>
-    // console.log(foundUser)
-  }, [usertobefound]);
-
-
-  function handelSearch(e){
+  // Handel user searching
+  const handelSearch = async(e)=>{
     if(e.key === "Enter"){
-      const un = search.current.value;
-      setusertobefound(un)
-      // const fetchUser = async () => {
-      //     const res = await axios.get(`/users/?username=${un}`);
-      //     setFoundUser(res.data);
-      //   };
-      console.log("ulalal" + foundUser)
-
-    // console.log(search.current.value)
-    // const res = await axios.get(`/?username=${username}`)
-    // console.log(res)
+      const searchedUsername = search.current.value;
+      
+      try {
+        const res = await axios.get(`${genConfig.url.server_url}/api/users/?username=${searchedUsername}`);
+        // console.log(res);
+        setFoundUser(res.data);
+        search.current.value = ""
+      } catch (error) {
+        console.log(error);
+        alert(`can not find user: ${searchedUsername}`)
+      }
+      
     }
+  };
+
+  // display search result component
+  const DisplaySearchResult = ({foundUser})=>{
+
+    // if()
+
+
+    return (
+      
+      <div className="topbarsrindiv">
+        <Link to={`/profile/${foundUser.username}`}>
+          <img
+            src={
+              user.profilePicture
+                ? PF + user.profilePicture
+                : PF + "person/noAvatar.png"
+            } 
+            alt=""
+            className="topbarsrprofileimg"
+          />
+        </Link>
+        <span className="topbarsrprofilename">{foundUser.username}</span>
+      </div>
+    )
   }
 
   // const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -81,6 +91,9 @@ export default function Topbar() {
             onKeyDown = {handelSearch}
           />
         </div>
+        {foundUser.username ? <div className="topbarsrmain bg-dark">
+          <DisplaySearchResult foundUser={foundUser}/>
+        </div> : null}
       </div>
       <div className="topbarRight">
         <div className="topbarLinks">

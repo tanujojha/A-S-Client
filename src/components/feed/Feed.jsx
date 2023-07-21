@@ -29,7 +29,7 @@ export default function Feed({ username }) {
       <div className="feedWrapper mt-4">
         {(!username || username === user.username) && <Share />}
         {posts.map((p) => (
-          <Post key={p._id} post={p} />
+          <Post key={p._id} post={p} setPosts={setPosts} username={username}/>
         ))}
       </div>
     </div>

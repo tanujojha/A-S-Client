@@ -6,7 +6,7 @@ import Rightbar from "../../components/rightbar/Rightbar";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router";
-import { genConfig } from "../../general";
+import { genConfig } from "../../general"; 
 
 export default function Profile() {
   // const PF = process.env.REACT_APP_PUBLIC_FOLDER;

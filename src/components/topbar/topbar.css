@@ -25,6 +25,7 @@
 
 .topbarCenter {
   flex: 5;
+  position: relative;
 }
 
 .searchbar {
@@ -98,5 +99,37 @@
 }
 
 .logout {
+  cursor: pointer;
+}
+
+
+/* SEARCH RESULT BOX  */
+.topbarsrmain{
+  position: absolute;
+  width: 100%;
+  background-color: rgb(26, 23, 23);
+  border-radius: 10px;
+  margin-top: 5px;
+  overflow-y: auto;
+}
+
+.topbarsrindiv{
+  display: flex;
+  gap: 10px;
+  padding: 5px 10px;
+  margin-top: 5px;
+
+}
+
+.topbarsrprofileimg{
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.topbarsrprofilename{
+  color: white;
   cursor: pointer;
 }
